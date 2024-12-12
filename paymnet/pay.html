@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment UI</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+body {
+    background: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.payment-container {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.payment-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background:aquamarine;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+button:active {
+    background: #3e8e41;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>Payment Details</h1>
+        <form id="payment-form">
+            <div class="form-group">
+                <label for="card-holder">Card Holder Name</label>
+                <input type="text" id="card-holder" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" placeholder="Ex: 1234 5678 9101 1121" maxlength="19" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="expiry-date">Expiry Date</label>
+                    <input type="month" id="expiry-date" placeholder="MM/YY" maxlength="5" required>
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="password" id="cvv" placeholder="***" maxlength="3" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="text" id="amount" placeholder="0.00" required>
+            </div>
+
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("payment-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Collect form data
+    const cardHolder = document.getElementById("card-holder").value;
+    const cardNumber = document.getElementById("card-number").value;
+    const expiryDate = document.getElementById("expiry-date").value;
+    const cvv = document.getElementById("cvv").value;
+    const amount = document.getElementById("amount").value;
+
+    // Validate input (basic validation)
+    if (!cardHolder || !cardNumber || !expiryDate || !cvv || !amount) {
+        alert("Please fill out all fields!");
+        return;
+    }
+
+    // Simulate payment success
+    alert(`Payment of ${amount} was successful! Thank you, ${cardHolder}.`);
+});
+
+    </script>
+</body>
+</html>

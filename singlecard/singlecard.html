@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .navbar-brand a img {
+            width: 70px;
+            border-radius: 50%;
+        }
+
+        .navbar-nav {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .navbar-nav li {
+            margin-right: 20px;
+        }
+
+        .navbar-nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .navbar-nav a:hover {
+            color: #ccc;
+        }
+
+        .navbar-toggle {
+            background-color: #333;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.5em;
+            padding: 5px;
+        }
+
+        .navbar-toggle span {
+            background-color: #fff;
+            display: block;
+            height: 2px;
+            margin-bottom: 5px;
+            width: 20px;
+        }
+
+       #single{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       }
+        #brand-cards {
+            width: 90vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: white;
+            gap: 10px;
+            margin: 30px;
+            text-align: center;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 2px 3px 20px black;
+
+            img {
+                width: 200px;
+                aspect-ratio: 1/1;
+            }
+
+            cursor: pointer;
+        }
+
+        #price {
+            display: flex;
+            text-align: justify;
+            justify-content: space-evenly;
+        }
+
+        #price p {
+            padding: 6px;
+            margin: 5px;
+            background-color: aquamarine;
+        }
+
+        #cart, #carts{
+            width: 100px;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: aquamarine;
+            box-shadow: 2px 3px 10px black;
+            cursor: pointer;
+        }
+
+
+
+        #about {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #d3d9d4;
+
+}
+
+.details {
+  width: 700px;
+  text-align: center;
+}
+
+.more-details {
+  display: flex;
+}
+
+.more-details .child {
+  padding: 10px;
+  text-align: center;
+}
+
+.more-details .child img {
+  width: 150px;
+}
+
+
+        footer {
+            background-color: #212a31;
+            color: #d3d9d4;
+        }
+
+        .footer {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .footer .logo {
+            width: 300px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .footer .logo img {
+            width: 150px;
+            border-radius: 50%;
+        }
+
+        .footer .details-,
+        .brands-,
+        .Contact-details {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            line-height: 2;
+            text-align: justify;
+            justify-content: center;
+        }
+
+        .footer .details- h1,
+        .brands- h1,
+        .Contact-details h1 {
+            color: #748d92;
+        }
+
+        .footer .details- a,
+        .brands- a {
+            text-decoration: none;
+            color: #d3d9d4;
+        }
+
+        footer .bottom {
+            padding: 50px;
+            color: darkgray;
+        }
+
+
+
+        @media (max-width:789px) {
+            .navbar-nav {
+                display: none;
+            }
+
+            .navbar-toggle {
+                display: block;
+            }
+        }
+
+        @media(min-width:790px) {
+            .navbar-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a href="#"><img src="../assests/Logo.png" alt=""></a>
+                <h3>OpticView</h3>
+            </div>
+            <ul class="navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#review">Brands</a></li>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </div>
+            </ul>
+
+            <button class="navbar-toggle" id="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <div id="single"></div>
+
+
+    <section id="about">
+        <div class="details">
+            <h1> Why OpticView ?</h1>
+            <p>At OpticView, we’re passionate about photography and dedicated to helping you find the perfect gear to
+                capture life’s best moments.
+                Our wide selection of high-quality cameras, lenses, and accessories caters to every skill level and
+                budget. We offer competitive pricing,
+                expert advice, and a seamless shopping experience to ensure you get the most value for your investment.
+                Choose OpticView for unbeatable service and products tailored to your needs!</p>
+        </div>
+        <div class="more-details">
+            <div class="child">
+                <img src="../assests/idea.png" alt="">
+                <h3>Smart idea</h3>
+                <p>With dozens of intelligent concepts, you’ll find what you’re looking for in our store,
+                    and it will be unique and personalized to match</p>
+            </div>
+            <div class="child">
+                <img src="../assests/support.png" alt="">
+                <h3>Outstanding support</h3>
+                <p>Our customer support is second to none – users rave about how we don’t rest until every issue is
+                    solved to their satisfaction.</p>
+            </div>
+            <div class="child">
+                <img src="../assests/secure-checkout.png" alt="">
+                <h3>Secure Checkout</h3>
+                <p>With 128-bit SSL security with advanced encryption you are guaranteed that your purchases are safe.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="footer">
+            <div class="logo">
+                <img src="../assests/Logo.png" alt="">
+                <p>We believe in providing good quality products & after sales service in real sense. Our responsibility
+                    does not end with
+                    just the sale of a product,rather, it begins with it and lasts until the product functioning is in
+                    accordance with our valued customer’s satisfaction.</p>
+            </div>
+            <div class="details-">
+                <h1>Quick Links</h1>
+                <a href="">Home</a>
+                <a href="">About</a>
+                <a href="">Reviews</a>
+                <a href="">Contact</a>
+            </div>
+            <div class="brands-">
+                <h1>Brands</h1>
+                <a href="">Canon</a>
+                <a href="">NIKON</a>
+                <a href="">Panasonic</a>
+                <a href="">SONY</a>
+            </div>
+            <div class="Contact-details">
+                <h1>Contact</h1>
+                <P> Email: opticview9999@gmail.com</P>
+                <p> Contact: +91 9999999999</p>
+                <p> Contact: +91 9999999999</p>
+                <p> Address: Road no: 4, kphb,hyderabad,telangana -500017</p>
+            </div>
+        </div>
+        <p class="bottom">Proudly Made in India ♥️ - OpticView Trading Pvt. Ltd.</p>
+    </footer>
+
+
+    <script>
+        let single = document.getElementById("single")
+        const singlecard = JSON.parse(localStorage.getItem("singlecard"))
+        console.log(singlecard)
+
+        let singledata = document.createElement("div")
+        singledata.id = "brand-cards"
+        singledata.innerHTML = `
+         <img src='${singlecard.image_url}'/>
+        <h4>${singlecard.model}</h4>
+       <div id="price">  <p>Price: ${singlecard.price}</p> <p>Rating: ${singlecard.rating}</p> </div>
+        <div id="description"> <h3> Description: </h3>  <p>${singlecard.description}
+        </p>
+        <h3> Features </h3>  <p>${singlecard.features}</p></div>
+        <button id="cart"> Add to Cart </button>
+          <button id="carts" > Buy Now </button>
+        `
+        singledata.querySelector("#cart").addEventListener("click",(e)=>{
+            e.stopImmediatePropagation()
+            let conform= confirm(" Are you sure to added to cart ?")
+          if(conform){
+            const allcartItems= JSON.parse(localStorage.getItem("cartItems")) || []
+            allcartItems.push(singlecard)
+            localStorage.setItem("cartItems",JSON.stringify(singlecard))
+            alert("Items added to cart")
+          }
+        })
+
+         // buynow
+         singledata.querySelector("#carts").addEventListener("click",(e)=>{
+            e.stopImmediatePropagation()
+           let signal=alert("Redirecting to Payment")
+           if(signal){
+             window.location.href="../paymnet/pay.html"
+           }
+          })
+
+        single.append(singledata)
+    </script>
+</body>
+
+</html>

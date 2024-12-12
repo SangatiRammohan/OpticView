@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #brand-cards {
+    width: 400px;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    padding: 8px;
+    gap: 5px;
+    margin: 8px;
+    text-align: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 2px 3px 20px black;
+    img {
+      width: 200px;
+      aspect-ratio: 1/1;
+    }
+    cursor: pointer;
+  }
+  
+  #price{
+    display: flex;
+    text-align: justify;
+    justify-content: space-evenly;
+  }
+  #price p{
+    padding:6px ;margin: 5px;
+    background-color: aquamarine;
+  }
+  #cart, #carts, #remove{
+    width: 100px;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: aquamarine;
+    box-shadow: 2px 3px 10px black;
+    cursor: pointer;
+  }
+
+    </style>
+</head>
+<body>
+    <div id="cartelment">
+
+
+
+    </div>
+    
+
+    <script>
+        let cartcount=document.getElementById("cartelment")
+       let createElement= JSON.parse(localStorage.getItem("cartItems"))
+      //  console.log(createElement)
+
+      
+        
+        let cartcard = document.createElement("div")
+        cartcard.id = "brand-cards"
+        cartcard.innerHTML = `
+         <img src='${createElement.image_url}'/>
+        <h4>${createElement.model}</h4>
+       <div id="price">  <p>Price: ${createElement.price}</p> <p>Rating: ${createElement.rating}</p> </div>
+        <div id="description"> <h3> Description: </h3>  <p>${createElement.description}
+        </p>
+        <h3> Features </h3>  <p>${createElement.features}</p></div>
+        
+        <button id="carts" > Buy Now </button>
+        <button id="remove"> Remove </button>
+        `
+
+        cartcount.append(cartcard)
+
+
+
+         // buynow
+         cartcard.querySelector("#carts").addEventListener("click",(e)=>{
+            e.stopImmediatePropagation()
+           let signal=alert("Redirecting to Payment")
+           if(signal){
+             window.location.href="pay.html"
+           }
+          })
+  
+    </script>
+</body>
+</html>

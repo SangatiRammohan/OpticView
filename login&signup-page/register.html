@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <div class="login">
+        <h1> Register here </h1>
+        <form action="" method="post">
+            <div class="user">
+                <input type="text" placeholder="Enter your user Name" id="userName">
+                <ion-icon name="people-sharp"></ion-icon>
+            </div>
+            <div class="user">
+                <input type="email" placeholder="Enter your user email" id="userEmail">
+                <ion-icon name="mail-open-outline"></ion-icon>
+            </div>
+            <div class="user">
+                <input type="password" placeholder="Enter your Password" id="userPswrd" onkeydown="check(event)">
+                <ion-icon name="eye-off"  id="icon1"></ion-icon>
+            </div>
+            <p id="ptag"></p>
+
+            <div class="user">
+                <input type="password" placeholder="Confirom password" id="cnfrmPswrd">
+                <ion-icon name="eye-off"  id="icon2"></ion-icon>
+            </div>
+            <button id="registerBtn">Register Now</button>
+            <p> Already have an account ? <a href="login.html">Login</a></p>
+        </form>
+    </div>
+    <script src="register.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
