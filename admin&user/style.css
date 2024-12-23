@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 .navbar {
-    background-color: #333;
+    background-color: #212a31;
     color: #fff;
     padding: 1em;
     display: flex;
@@ -60,6 +60,7 @@
 
 .main{
   padding: 30px;
+  background-color: #748d92;
 }
   .buying, .selling{
     width: 90vw;
@@ -71,6 +72,8 @@
   }
   .buying img, .selling img{
     width: 50%;
+    height: 300px;
+    border-radius: 20px;
     height: 500px;
   }
   .buying-details, .selling-details{
@@ -81,7 +84,7 @@
   width: 100px;
   padding: 10px;
   border: none;
-  background-color: #748d92;
+  background-color:#212a31;
   color: #d3d9d4;
 border-radius: 20px;
 cursor: pointer;

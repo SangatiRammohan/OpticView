@@ -501,156 +501,113 @@ const data = [
     }
 ]
 
+// Get HTML elements
+let divcard = document.getElementById("info");
+let searchBar = document.getElementById("searchBar");
 
+// Function to display product cards
+function displayBrandCards(filteredData) {
+    divcard.innerHTML = ''; // Clear existing cards
+    filteredData.forEach(brand => {
+        brand.cameras.forEach(camera => {
+            let card = document.createElement("div");
+            card.classList.add("brand-card");
+            card.innerHTML = `
+                <img src="${camera.image_url}" alt="${camera.model}" />
+                <h4>${camera.model}</h4>
+                <div id="price">
+                    <p>Price: ${camera.price}</p>
+                    <p>Rating: ${camera.rating} ⭐</p>
+                </div>
+                <div id="description">
+                    <h3>Description:</h3>
+                    <p>${camera.description}</p>
+                    <h3>Features:</h3>
+                    <p>${camera.features}</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now">Buy Now</button>
+            `;
+            divcard.append(card);
 
-let allproductsbuy = document.getElementById("allproducts")
+            // Add to Cart functionality
+            card.querySelector(".add-to-cart").addEventListener("click", () => {
+                let confirmAdd = confirm("Are you sure you want to add this item to the cart?");
+                if (confirmAdd) {
+                    // Retrieve existing cart items from localStorage
+                    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+            
+                    // Push the camera item into the cart
+                    cartItems.push(camera);
+            
+                    // Save updated cart to localStorage
+                    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+            
+                    alert("Item added to cart");
+                }
+            });
+            
 
-// let inputData=document.parentNode();
+            
+            
 
+            // Buy Now functionality
+            card.querySelector(".buy-now").addEventListener("click", () => {
+                alert("Redirecting to payment page...");
+                window.location.href = "../OpticView/paymnet/pay.html"; // Replace with actual payment page URL
+            });
+        });
+    });
+}
+// Button Elements
+let allProductsBtn = document.getElementById("one");
+let canonBtn = document.getElementById("two");
+let nikonBtn = document.getElementById("three");
+let panasonicBtn = document.getElementById("four");
+let sonyBtn = document.getElementById("five");
 
-
-let divcard =document.getElementById("info")
-console.log(divcard)
-function brands(z){
-    console.log(z)
-    z.cameras.forEach((y) => {
-    
-        let card = document.createElement("div")
-        card.id = "brand-cards"
-        card.innerHTML = `
-         <img src='${y.image_url}'/>
-        <h4>${y.model}</h4>
-       <div id="price">  <p>Price: ${y.price}</p> <p>Rating: ${y.rating} ⭐</p> </div>
-        <div id="description"> <h3> Description: </h3>  <p>${y.description}
-        </p>
-        <h3> Features </h3>  <p>${y.features}</p></div>
-        <button id="cart"> Add to Cart </button>
-        <button id="carts" > Buy Now </button>
-        `
-
-    
-    })
+// Function to filter cameras by brand
+function filterByBrand(brandName) {
+    if (brandName === "all") {
+        displayBrandCards(data); // Display all products
+    } else {
+        let filteredData = data.filter(brand => brand.name.toLowerCase() === brandName.toLowerCase());
+        displayBrandCards(filteredData); // Display filtered products
+    }
 }
 
+// Event Listeners for Buttons
+allProductsBtn.addEventListener("click", () => filterByBrand("all"));
+canonBtn.addEventListener("click", () => filterByBrand("Canon"));
+nikonBtn.addEventListener("click", () => filterByBrand("Nikon"));
+panasonicBtn.addEventListener("click", () => filterByBrand("Panasonic"));
+sonyBtn.addEventListener("click", () => filterByBrand("Sony"));
 
 
-
-
-
-
-
-// filtering of data as per buttons
-    let container =document.querySelectorAll(".click")
-container.forEach(Element=>{
-    const btntext =Element.textContent
-    console.log(btntext)
-    Element.addEventListener("click",(e)=>{
-        // e.stopImmediatePropagation()
-    const canonCameras = data.find(brand => brand.name.toLowerCase() === btntext.toLowerCase());
-    console.log(canonCameras)
+searchBar.addEventListener("input", (e) => {
+    let searchTerm = e.target.value.toLowerCase();
     
-    if (canonCameras) {
-        localStorage.setItem("selectedBrand", JSON.stringify(canonCameras));
-
-        window.location.href = "../separatebrands/brand.html";
-    } else {
-        console.error("No matching brand found!");
+    // Clear the display if the search term is empty
+    if (searchTerm === '') {
+        divcard.innerHTML = '';  // Clear the card display when the search is empty
+        return;
     }
-    brands(canonCameras)
-})
-})
-//filterdata
-let filterData = JSON.parse(localStorage.getItem("selectedBrand"))
-console.log(filterData)
 
-// let brandCard = document.createElement("div")
-// filterData.forEach((a)=>{
-    filterData.cameras.forEach((b) => {
-    
-        let brandCard = document.createElement("div")
-        brandCard.id = "brand-cards"
-        brandCard.innerHTML = `
-         <img src='${b.image_url}'/>
-        <h4>${b.model}</h4>
-       <div id="price">  <p>Price: ${b.price}</p> <p>Rating: ${b.rating} ⭐</p> </div>
-        <div id="description"> <h3> Description: </h3>  <p>${b.description}
-        </p>
-        <h3> Features </h3>  <p>${b.features}</p></div>
-        <button id="cart"> Add to Cart </button>
-        <button id="carts" > Buy Now </button>
-        `
-        divcard.append(brandCard)
+    // Otherwise, filter the data
+    let filteredData = data.map(brand => {
+        let filteredCameras = brand.cameras.filter(camera => {
+            // Ensure camera.features is a string before calling .toLowerCase()
+            const features = typeof camera.features === 'string' ? camera.features : '';
+            const description = typeof camera.description === 'string' ? camera.description : '';
+            const model = typeof camera.model === 'string' ? camera.model : '';
 
-       // add to cart
-       brandCard.querySelector("#cart").addEventListener("click",(e)=>{
-        // e.stopImmediatePropagation()
-        let conform= confirm(" Are you sure to added to cart ?")
-      if(conform){
-        let allcartItems= JSON.parse(localStorage.getItem("cartItems")) || []
-         allcartItems.push(b)
-         // console.log(allcartItems)
-         alert("Items added to cart")
-        localStorage.setItem("cartItems",JSON.stringify(allcartItems))
+            return model.toLowerCase().includes(searchTerm) ||
+                description.toLowerCase().includes(searchTerm) ||
+                features.toLowerCase().includes(searchTerm);
+        });
+        return { ...brand, cameras: filteredCameras };
+    }).filter(brand => brand.cameras.length > 0); // Remove brands with no matching cameras
 
-      }
-    })
-
-
-
-     // singlecard clicking
-     brandCard.addEventListener("click",(e)=>{
-        e.stopImmediatePropagation()
-        window.location.assign("../singlecard/singlecard.html")
-        localStorage.setItem("singlecard",JSON.stringify(y))
-        
-    })
-
-
-    // buynow
-    card.querySelector("#carts").addEventListener("click",(e)=>{
-        e.stopImmediatePropagation()
-       let signal=alert("Redirecting to Payment")
-       if(signal){
-         window.location.href="pay.html"
-       }
-    })
-
-    })
-// })
-
-
-
-
-// search functionality
-
-// let inputsearch = document.querySelector("#inputdata")
-// console.log(inputsearch)
-// // console.log(input)
-// inputsearch.addEventListener("keypress",(e)=>{
-// e.preventDefault()
-// if(e.key==="Enter"){
-//     let inputValue=inputsearch.value.toLowerCase()
-//     console.log(inputValue)
-//     // console.log(inputValue)
-// //     const searchdata = data.filter(p=>p.name.toLowerCase() == inputValue);
-// //     console.log(searchdata)
-// //     brands(searchdata) 
-// // }
-//     // alert("Please give valid brand")
-//     // const d1 = data.filter(d=>d.name.toLowerCase().includes(inputValue)) ||  d.cameras.toLowerCase().includes(inputValue)
-//     // console.log(d1)
-//     // brands(d1)
-// }
-
-
-// })
-
-    
-
-// console.log(inputData)
-// inputData.addEventListener("keypress",(e)=>{
-//     if(e.key === "Enter"){
-//         const serachData=data.filter(x=>x.name.toLowerCase() == inputData.value.toLowerCase())
-//         console.log(serachData)
-//     }
-// })
+    // Display the filtered data
+    displayBrandCards(filteredData);
+});

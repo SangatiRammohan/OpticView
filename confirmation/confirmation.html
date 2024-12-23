@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .confirmation-container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px 30px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        .receipt-details {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .receipt-details p {
+            margin: 8px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .receipt-details span {
+            font-weight: bold;
+            color: #333;
+        }
+        button {
+            padding: 12px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <h1>Payment Successful!</h1>
+        <p>Thank you for your payment.</p>
+        <div class="receipt-details">
+            <p><span>Card Holder Name:</span> <span id="user-name"></span></p>
+            <p><span>Card Number:</span> **** **** **** <span id="card-number"></span></p>
+            <p><span>Amount Paid:</span> $<span id="amount"></span></p>
+            <p><span>Date:</span> <span id="payment-date"></span></p>
+        </div>
+        <button onclick="goHome()">Return to Home</button>
+    </div>
+
+    <script>
+        window.onload = function() {
+            // Retrieve data from sessionStorage
+            const paymentDetails = JSON.parse(sessionStorage.getItem("paymentDetails"));
+
+            if (paymentDetails) {
+                document.getElementById("user-name").innerText = paymentDetails.cardHolder;
+                document.getElementById("card-number").innerText = paymentDetails.cardNumber.slice(-4); // Last 4 digits
+                document.getElementById("amount").innerText = paymentDetails.amount;
+
+                // Display today's date
+                const today = new Date();
+                document.getElementById("payment-date").innerText = today.toLocaleDateString();
+            } else {
+                alert("No payment details found! Redirecting to Home.");
+                window.location.href = "index.html"; // Redirect to home page
+            }
+        };
+
+        function goHome() {
+            sessionStorage.removeItem("paymentDetails"); // Clear session data
+            window.location.href = "../buyingpage/buy.html"; // Redirect to home
+        }
+    </script>
+</body>
+</html>

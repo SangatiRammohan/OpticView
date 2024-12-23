@@ -3,93 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Your Cart</title>
     <style>
-        #brand-cards {
-    width: 400px;
-    height: 95vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: white;
-    padding: 8px;
-    gap: 5px;
-    margin: 8px;
-    text-align: center;
-    align-items: center;
-    border-radius: 10px;
-    box-shadow: 2px 3px 20px black;
-    img {
-      width: 200px;
-      aspect-ratio: 1/1;
-    }
-    cursor: pointer;
-  }
-  
-  #price{
-    display: flex;
-    text-align: justify;
-    justify-content: space-evenly;
-  }
-  #price p{
-    padding:6px ;margin: 5px;
-    background-color: aquamarine;
-  }
-  #cart, #carts, #remove{
-    width: 100px;
-    border: none;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: aquamarine;
-    box-shadow: 2px 3px 10px black;
-    cursor: pointer;
-  }
-
+        .cart-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        .cart-item img {
+            max-width: 100px;
+            margin-right: 20px;
+        }
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        .cart-item-buttons {
+            margin-left: 20px;
+        }
+        #total-price {
+            font-weight: bold;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <div id="cartelment">
-
-
-
-    </div>
-    
+    <h1>Your Cart</h1>
+    <div id="cart-container"></div>
+    <div id="total-price">Total Price: $0</div>
+    <button id="proceed-to-checkout">Proceed to Checkout</button>
 
     <script>
-        let cartcount=document.getElementById("cartelment")
-       let createElement= JSON.parse(localStorage.getItem("cartItems"))
-      //  console.log(createElement)
+        // Get cart items from localStorage
+        let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-      
-        
-        let cartcard = document.createElement("div")
-        cartcard.id = "brand-cards"
-        cartcard.innerHTML = `
-         <img src='${createElement.image_url}'/>
-        <h4>${createElement.model}</h4>
-       <div id="price">  <p>Price: ${createElement.price}</p> <p>Rating: ${createElement.rating}</p> </div>
-        <div id="description"> <h3> Description: </h3>  <p>${createElement.description}
-        </p>
-        <h3> Features </h3>  <p>${createElement.features}</p></div>
-        
-        <button id="carts" > Buy Now </button>
-        <button id="remove"> Remove </button>
-        `
+        // Function to display cart items and calculate total price
+        function displayCart() {
+            let cartContainer = document.getElementById("cart-container");
+            cartContainer.innerHTML = '';
+            let totalPrice = 0;
 
-        cartcount.append(cartcard)
+            if (cartItems.length === 0) {
+                cartContainer.innerHTML = "<p>Your cart is empty!</p>";
+                document.getElementById("total-price").innerText = "Total Price: $0";
+                return;
+            }
 
+            cartItems.forEach((item, index) => {
+                let cartItemDiv = document.createElement("div");
+                cartItemDiv.classList.add("cart-item");
+                cartItemDiv.innerHTML = `
+                    <img src="${item.image_url}" alt="${item.model}">
+                    <div class="cart-item-details">
+                        <h4>${item.model}</h4>
+                        <p>Price: $${item.price.toFixed(2)}</p>
+                    </div>
+                    <div class="cart-item-buttons">
+                        <button onclick="removeFromCart(${index})">Remove</button>
+                        <button onclick="buyNow(${index})">Buy Now</button>
+                    </div>
+                `;
+                cartContainer.appendChild(cartItemDiv);
+                totalPrice += item.price;
+            });
 
+            document.getElementById("total-price").innerText = "Total Price: $" + totalPrice.toFixed(2);
+        }
 
-         // buynow
-         cartcard.querySelector("#carts").addEventListener("click",(e)=>{
-            e.stopImmediatePropagation()
-           let signal=alert("Redirecting to Payment")
-           if(signal){
-             window.location.href="pay.html"
-           }
-          })
-  
+        // Remove item from the cart
+        function removeFromCart(index) {
+            let confirmRemove = confirm("Are you sure you want to remove this item?");
+            if (confirmRemove) {
+                cartItems.splice(index, 1);
+                localStorage.setItem("cartItems", JSON.stringify(cartItems));
+                displayCart();
+            }
+        }
+
+        // Buy Now function
+        function buyNow(index) {
+            sessionStorage.setItem("selectedItem", JSON.stringify(cartItems[index]));
+            window.location.href = "../paymnet/pay.html";
+        }
+
+        // Proceed to Checkout button
+        document.getElementById("proceed-to-checkout").addEventListener("click", function() {
+            if (cartItems.length === 0) {
+                alert("Your cart is empty! Add items to proceed.");
+            } else {
+                sessionStorage.setItem("selectedItem", JSON.stringify(cartItems));
+                window.location.href = "../paymnet/pay.html";
+            }
+        });
+
+        // Display cart items on page load
+        displayCart();
     </script>
 </body>
 </html>
