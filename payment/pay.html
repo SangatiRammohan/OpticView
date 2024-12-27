@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment UI</title>
+    <link rel="shortcut icon" href="../assests/bx-camera-movie.svg" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            background: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .payment-container {
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .payment-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[readonly] {
+            background-color: #f0f0f0;
+            color: #555;
+            cursor: not-allowed;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: aquamarine;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="payment-container">
+        <h1>Payment Details</h1>
+        <form id="payment-form">
+            <div class="form-group">
+                <label for="card-holder">Card Holder Name</label>
+                <input type="text" id="card-holder" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" placeholder="Ex: 1234 5678 9101 1121" maxlength="12" required>
+            </div>
+
+            <div class="form-group">
+                <label for="expiry-date">Expiry Date</label>
+                <input type="month" id="expiry-date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="password" id="cvv" placeholder="***" maxlength="3" required>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="text" id="amount" readonly>
+            </div>
+
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
+
+    <script>
+        // Load price from sessionStorage on page load
+        window.onload = function () {
+            const selectedItems = JSON.parse(sessionStorage.getItem("selectedItem"));
+
+            // Calculate total price for multiple or single items
+            if (Array.isArray(selectedItems)) {
+                const total = selectedItems.reduce((sum, item) => sum + item.price, 0);
+                document.getElementById("amount").value = `${total.toFixed(2)}`;
+            }
+            else if (selectedItems && selectedItems.price) {
+                document.getElementById("amount").value = `${selectedItems.price.toFixed(2)}`;
+            } else {
+                document.getElementById("amount").value = "$0.00";
+            }
+        };
+
+        // Handle form submission
+        document.getElementById("payment-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const cardHolder = document.getElementById("card-holder").value;
+            const cardNumber = document.getElementById("card-number").value;
+            const expiryDate = document.getElementById("expiry-date").value;
+            const cvv = document.getElementById("cvv").value;
+            const amount = document.getElementById("amount").value;
+
+            // Validate all fields
+            if (!cardHolder || !cardNumber || !expiryDate || !cvv) {
+                alert("Please fill out all required fields.");
+                return;
+            }
+
+            // Simulate successful payment
+            // alert(`Payment of ${amount} was successful! Thank you, ${cardHolder}.`);
+
+            Swal.fire({
+                title: "Payment successfull",
+                icon: "success",
+                html: `Payment of ${amount} was successful! Thank you, ${cardHolder}.`,
+                showCloseButton: true,
+                // showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText: `<i class="fa fa-thumbs-up"></i> Ok!`,
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href="../main/index.html";
+                }
+            });
+
+        });
+
+        document.getElementById("payment-form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Collect form data
+            const cardHolder = document.getElementById("card-holder").value;
+            const cardNumber = document.getElementById("card-number").value;
+            const expiryDate = document.getElementById("expiry-date").value;
+            const cvv = document.getElementById("cvv").value;
+            const amount = document.getElementById("amount").value;
+
+            // Basic validation
+            if (!cardHolder || !cardNumber || !expiryDate || !cvv || !amount) {
+                alert("Please fill out all fields!");
+                return;
+            }
+
+            // Save data to sessionStorage
+            sessionStorage.setItem("paymentDetails", JSON.stringify({
+                cardHolder: cardHolder,
+                cardNumber: cardNumber,
+                amount: amount
+            }));
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,687 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: none;
+}
+
+body {
+    background-color: #111319;
+    
+}
+html{
+    scroll-behavior: smooth;
+}
+
+header {
+    backdrop-filter: blur(20px);
+
+}
+
+.header-main {
+    width: 100%;
+    position: fixed;
+    /* z-index: 1000; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(185, 192, 185, 0.2);
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.header-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.header-search input {
+    padding: 5px;
+    width: 300px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    background-color: rgb(44, 42, 42);
+    color: white;
+}
+
+.header-right {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.header-left i,
+.header-right i, .header-left a {
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+#count {
+    width: 10px;
+    height: 5px;
+    padding: 10px;
+    background-color: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+    right: 4.3%;
+    border: none;
+}
+
+
+
+
+
+
+.sidebar {
+    width: 300px;
+    height: 150%;
+    background-color: #111319;
+    position: fixed;
+    transition: .4s ease-in-out;
+    left: 0;
+    z-index: 1;
+    color: white;
+
+
+}
+
+.bx-x {
+    position: relative;
+    left: 85%;
+    font-size: 35px;
+    align-content: end;
+    cursor: pointer;
+}
+
+.sidebar-top {
+    text-align: center;
+    padding: 20px;
+}
+
+.sidebar-middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    gap: 20px;
+    color: whitesmoke;
+}
+
+.sidebar a {
+    color: whitesmoke;
+}
+
+.sidebar-middle-1 {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    /* transition: 1s ease-in-out; */
+}
+
+.side-middle-2 {
+    padding-left: 20px;
+    line-height: 2;
+    /* transition: s linear; */
+}
+
+.side-middle-2 li {
+    margin: 0 30px;
+    cursor: pointer;
+}
+
+.side-middle-2 li a {
+    color: whitesmoke;
+}
+
+.sidebar-middle i {
+    margin: 0 15px;
+    color: whitesmoke;
+}
+
+.siderbar-bottom {
+    margin: 10px;
+}
+
+.siderbar-bottom .social {
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.siderbar-bottom .social i {
+    font-size: 30px;
+
+
+}
+
+
+
+.Top {
+    position: fixed;
+    top: 610px;
+    left: 91%;
+    color: white;
+    border-radius: 50%;
+    opacity: 0;
+    background-color: #111319;
+    border-radius: 50%;
+    padding: 5px;
+    pointer-events: none;
+    z-index: 1;
+    transition: all 0.4s ease-in-out;
+}
+
+.Top.active {
+    pointer-events: auto;
+    opacity: 1;
+    cursor: pointer;
+}
+.Top i {
+    font-size: 40px;
+    opacity: 0.7;
+}
+
+
+
+
+
+
+
+
+
+
+main {
+    position: absolute;
+    top: 11%;
+    /* background-color: red; */
+
+}
+
+.curosal-frames {
+    width: 98.93vw;
+    height: 87vh;
+    display: flex;
+    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
+    gap: 10px;
+}
+
+.curosal {
+    width: 100%;
+    min-width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* background-color: #13131f; */
+    color: #ddd;
+}
+
+.curosal::before {
+    content: "OpticView";
+    position: absolute;
+    font-size: 100px;
+    color: rgba(189, 168, 168, 0.01);
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    letter-spacing: 40px;
+
+}
+
+.curosal img {
+    width: 500px;
+}
+
+.curosal-child {
+    line-height: 2;
+    width: 320px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+
+
+
+
+
+.AllProducts {
+    width: 100%;
+    height: 100vh;
+    height: auto;
+    position: relative;
+    top: 700px;
+}
+
+#lines {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* margin: 40px; */
+    color: #ddd;
+}
+
+#lines .line {
+    width: 500px;
+    height: 1px;
+    background-color: #ddd;
+}
+
+
+
+
+
+.all-brands {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-top: 30px;
+}
+
+.brands {
+    width: 350px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 20px black;
+    margin: 30px;
+    gap: 20px;
+    background-color:#a9afc3;
+    border: 2px solid red;
+}
+
+
+#canon::after {
+    content: "OpticView";
+    position: absolute;
+    font-size: 100px;
+    color: rgba(189, 168, 168, 0.01);
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    letter-spacing: 40px;
+
+}
+
+.brands img {
+    width: 200px;
+}
+
+.brands p {
+    width: 50px;
+    height: 2px;
+    background-color: red;
+}
+
+
+
+.items {
+    width: 100%;
+    height: 100vh;
+    height: auto;
+    position: relative;
+    top: 750px;
+
+}
+
+.cards {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+
+}
+
+#allcards {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    /* color:white; */
+}
+
+.card-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 30px;
+    gap: 30px;
+}
+
+
+
+.cardSingle img {
+    width: 300px;
+    height: 250px;
+    padding: 20px;
+
+}
+
+.cardSingle .front {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    line-height: 1.7;
+    border: 1px solid whitesmoke;
+}
+
+
+
+
+.cardSingle {
+    position: relative;
+    width: 300px;
+    height: 400px; 
+}
+
+.cardSingle .front,
+.cardSingle .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: transform 0.8s linear; 
+}
+
+.cardSingle .front {
+    background: #fff;
+    z-index: -1;
+    border: 2px solid red; 
+}
+
+.cardSingle .back {
+    background: #f4f4f4;
+    transform: rotateY(180deg);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border: 2px solid red;
+}
+
+.cardSingle:hover .front {
+    transform: rotateY(180deg); 
+}
+
+.cardSingle:hover .back {
+    transform: rotateY(0); 
+}
+.back span{
+    width: 60px;
+    height: 2px;
+    background-color: red;
+}
+
+
+
+
+
+.banner {
+    height: 70vh;
+    position: relative;
+    top: 800px;
+    color: white;
+    /* padding: 50px 0; */
+}
+
+.child-banner {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    line-height: 2;
+    position: absolute;
+    margin: 100px 0 0 90px;
+}
+
+.child-banner #btn-view {
+    border: none;
+    background-color: black;
+    color: red;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.banner img {
+    width: 100%;
+}
+
+
+
+.reviews {
+    position: relative;
+    top: 750px;
+}
+
+.carousel-container {
+    height: 60vh;
+    display: flex;
+    overflow: hidden;
+    margin: 50px;
+}
+
+.brand-reviews {
+    height: auto;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 10px;
+    /* background-color: aqua; */
+}
+
+.review img {
+    width: 100%;
+    height: 400px;
+}
+
+.review {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: blue; */
+    padding: 30px;
+}
+
+.brand-reviews div {
+    flex-shrink: 0;
+}
+
+.brand-reviews::-webkit-scrollbar {
+    display: none;
+}
+
+
+.review-item {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(185, 192, 185, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+    top: -10%;
+    border: 1px solid rgba(185, 192, 185, 0.2);
+    padding: 20px;
+}
+
+.title-1 {
+    line-height: 2;
+}
+
+.title-1 h6 {
+    color: rgb(128, 128, 128, 0.6);
+}
+
+.title-2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-2 a {
+    color: red;
+    text-decoration: none;
+}
+
+
+.carousel-btn {
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.left-btn {
+    left: 10px;
+}
+
+.right-btn {
+    right: 10px;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+
+
+
+
+
+.support {
+    position: relative;
+    top: 800px;
+}
+
+.support-card {
+    display: flex;
+    padding: 60px;
+    justify-content: space-evenly;
+    color: #a9afc3;
+    text-align: center;
+}
+
+.support-card img {
+    width: 50px;
+}
+
+
+.footer {
+    position: relative;
+    top: 800px;
+    /* background-color: brown; */
+}
+
+
+.down {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px;
+}
+
+.down-card,
+.down-card-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.down-card h2,
+.down-card-2 h2 {
+    color: #ddd;
+}
+
+.down-card a,
+.down-card-2 a {
+    color: #999;
+}
+
+.down-card-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+}
+
+.down-card-1 .social i {
+    font-size: 40px;
+    margin: 20px;
+    color: whitesmoke;
+}
+
+.down-card-1 .ver-line {
+    width: 1px;
+    height: 70px;
+    background-color: #999;
+    margin: 20px;
+}
+
+.down-card-1 .subscribe {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+}
+
+.subscribe input,
+#subscribe {
+    width: 180px;
+    padding: 8px;
+    text-align: center;
+}
+
+.rights {
+
+    text-align: center;
+    margin: 40px;
+    color: #999;
+}
