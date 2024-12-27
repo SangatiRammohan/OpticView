@@ -306,6 +306,17 @@ padding: 20px;
 }
 
 
+/*  cart msg */
+#empty{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: red;
+}
+#empty i{
+    font-size: 100px;
+}
 
 
 

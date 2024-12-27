@@ -8,7 +8,7 @@ function displayCart() {
   let totalPrice = 0;
 
   if (cartItems.length === 0) {
-    cartContainer.innerHTML = "<p>Your cart is empty!</p>";
+    cartContainer.innerHTML = `<div id="empty"> <i class='bx bx-cart-download'></i><p class="empty">Your cart is empty!</p></div>`;
     document.getElementById("total-price").innerText = "Total Price: $0";
     return;
   }
@@ -89,7 +89,23 @@ let proceedBtn=document.getElementById("proceed-to-checkout")
 console.log(proceedBtn)
 proceedBtn.addEventListener("click", function () {
   if (cartItems.length === 0) {
-    alert("Your cart is empty! Add items to proceed.");
+    Swal.fire({
+      title: "Your Cart is Empty !",
+      showClass: {
+        popup: `
+          animate__animated
+          animate__fadeInUp
+          animate__faster
+        `
+      },
+      hideClass: {
+        popup: `
+          animate__animated
+          animate__fadeOutDown
+          animate__faster
+        `
+      }
+    });
   } else {
     sessionStorage.setItem("selectedItem", JSON.stringify(cartItems));
     window.location.href = "../payment/pay.html";
