@@ -36,7 +36,7 @@ Getting Started
 ### Installation:  
 1. Download or clone the repository:  
    ```bash
-   git clone https://github.com/your-username/opticview.git
+   git clone https://github.com/SangatiRammohan/OpticView.git
    ```  
 
 2. Navigate to the project folder and open `index.html` in your browser.  
