@@ -583,7 +583,7 @@ function displayBrandCards(filteredData) {
                   }).then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                         window.location.href="/payment/pay.html"
+                         window.location.href="/OpticView/payment/pay.html"
                     }
                   });
             });
